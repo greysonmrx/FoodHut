@@ -11,5 +11,6 @@ const routes = Router();
 
 // Routes
 routes.post('/users', UserController.store);
+routes.put('/users', UserController.update);
 
 export default routes;
