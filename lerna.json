@@ -1,0 +1,4 @@
+{
+  "packages": ["backend", "frontend", "mobile/FoodHut"],
+  "version": "0.0.1"
+}
