@@ -12,5 +12,6 @@ const routes = Router();
 // Routes
 routes.post('/users', UserController.store);
 routes.put('/users', UserController.update);
+routes.delete('/users', UserController.destroy);
 
 export default routes;

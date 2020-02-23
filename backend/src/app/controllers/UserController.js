@@ -46,6 +46,22 @@ class UserController {
       });
     }
   }
+
+  async destroy(req, res) {
+    try {
+      const { phone } = req.body;
+
+      const user = await User.findOne({ where: { phone } });
+
+      await user.destroy();
+
+      return res.status(200).json({});
+    } catch (err) {
+      return res.status(400).json({
+        message: 'Operação indisponível',
+      });
+    }
+  }
 }
 
 export default new UserController();
