@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 // Controllers
+import UserController from './app/controllers/UserController';
 
 // Middlewares
 
@@ -9,11 +10,6 @@ import { Router } from 'express';
 const routes = Router();
 
 // Routes
-
-routes.get('/welcome', (req, res) => {
-  res.send({
-    message: 'Hello World!',
-  });
-});
+routes.post('/users', UserController.store);
 
 export default routes;
