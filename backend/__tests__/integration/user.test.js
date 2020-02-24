@@ -46,4 +46,14 @@ describe('User', () => {
 
     expect(response.body).toHaveProperty('id');
   });
+
+  it('should not be able to update with a user not found', async () => {
+    const { phone, name } = await factory.attrs('User');
+
+    const response = await request(app)
+      .put('/users')
+      .send({ name, phone });
+
+    expect(response.status).toBe(400);
+  });
 });
