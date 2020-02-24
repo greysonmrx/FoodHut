@@ -5,7 +5,7 @@ class UserController {
     try {
       const { phone } = req.body;
 
-      const userExists = await User.findOne({ phone });
+      const userExists = await User.findOne({ where: { phone } });
 
       if (userExists) {
         return res.status(400).json({
@@ -13,9 +13,9 @@ class UserController {
         });
       }
 
-      const user = await User.create(req.body);
+      const { id, name } = await User.create(req.body);
 
-      return res.status(200).json(user);
+      return res.status(200).json({ id, name, phone });
     } catch (err) {
       return res.status(400).json({
         message: 'Operação indisponível',
