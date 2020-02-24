@@ -45,4 +45,27 @@ describe('Authentication', () => {
 
     expect(response.body).toHaveProperty('token');
   });
+
+  it('should be able to access private routes with JWT token', async () => {
+    const admin = await factory.attrs('Admin');
+
+    const { email, password } = await Admin.create(admin);
+
+    const {
+      body: { token },
+    } = await request(app)
+      .post('/sessions')
+      .send({ email, password });
+
+    const response = await request(app)
+      .post('/admins')
+      .send({
+        name: 'Nome sobrenome',
+        email: 'email@email.com',
+        password: '123456',
+      })
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.status).toBe(200);
+  });
 });
