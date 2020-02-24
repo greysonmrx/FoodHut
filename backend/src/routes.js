@@ -3,6 +3,7 @@ import { Router } from 'express';
 // Controllers
 import UserController from './app/controllers/UserController';
 import AdminController from './app/controllers/AdminController';
+import SessionController from './app/controllers/SessionController';
 
 // Middlewares
 
@@ -14,6 +15,8 @@ const routes = Router();
 routes.post('/users', UserController.store);
 routes.put('/users', UserController.update);
 routes.delete('/users', UserController.destroy);
+
+routes.post('/sessions', SessionController.store);
 
 routes.post('/admins', AdminController.store);
 
