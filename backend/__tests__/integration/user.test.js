@@ -56,4 +56,18 @@ describe('User', () => {
 
     expect(response.status).toBe(400);
   });
+
+  it('should be able to delete', async () => {
+    const { phone } = await factory.attrs('User');
+
+    await request(app)
+      .post('/users')
+      .send({ phone });
+
+    const response = await request(app)
+      .delete('/users')
+      .send({ phone });
+
+    expect(response.status).toBe(200);
+  });
 });
