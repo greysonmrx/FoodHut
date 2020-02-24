@@ -20,6 +20,10 @@ class Database {
       .map(model => model.init(this.connection))
       .map(model => model.associate && model.associate(this.connection.models));
   }
+
+  truncate() {
+    models.map(model => model.destroy({ truncate: true, force: true }));
+  }
 }
 
 export default new Database();

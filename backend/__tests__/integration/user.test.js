@@ -2,8 +2,13 @@ import request from 'supertest';
 
 import app from '../../src/app';
 import factory from '../factories';
+import Database from '../../src/database';
 
 describe('User', () => {
+  beforeEach(async () => {
+    await Database.truncate();
+  });
+
   it('should be able to register', async () => {
     const { phone } = await factory.attrs('User');
 
