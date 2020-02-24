@@ -13,4 +13,18 @@ describe('User', () => {
 
     expect(response.body).toHaveProperty('id');
   });
+
+  it('should not be able to register with duplicated phone', async () => {
+    const { phone } = await factory.attrs('User');
+
+    await request(app)
+      .post('/users')
+      .send({ phone });
+
+    const response = await request(app)
+      .post('/users')
+      .send({ phone });
+
+    expect(response.status).toBe(400);
+  });
 });
