@@ -32,4 +32,18 @@ describe('User', () => {
 
     expect(response.status).toBe(400);
   });
+
+  it('should be able to update', async () => {
+    const { phone, name } = await factory.attrs('User');
+
+    await request(app)
+      .post('/users')
+      .send({ phone });
+
+    const response = await request(app)
+      .put('/users')
+      .send({ name, phone });
+
+    expect(response.body).toHaveProperty('id');
+  });
 });
