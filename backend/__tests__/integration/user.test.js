@@ -70,4 +70,14 @@ describe('User', () => {
 
     expect(response.status).toBe(200);
   });
+
+  it('should not be able to delete a user not found', async () => {
+    const { phone } = await factory.attrs('User');
+
+    const response = await request(app)
+      .delete('/users')
+      .send({ phone });
+
+    expect(response.status).toBe(400);
+  });
 });
