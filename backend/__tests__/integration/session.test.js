@@ -21,4 +21,16 @@ describe('Authentication', () => {
 
     expect(response.status).toBe(200);
   });
+
+  it('should not authenticate with invalid credentials', async () => {
+    const { name, email, password } = await factory.attrs('Admin');
+
+    await Admin.create({ name, email, password });
+
+    const response = await request(app)
+      .post('/sessions')
+      .send({ email, password: '' });
+
+    expect(response.status).toBe(401);
+  });
 });
