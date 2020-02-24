@@ -33,4 +33,16 @@ describe('Authentication', () => {
 
     expect(response.status).toBe(401);
   });
+
+  it('should return JWT token when authenticated', async () => {
+    const { name, email, password } = await factory.attrs('Admin');
+
+    await Admin.create({ name, email, password });
+
+    const response = await request(app)
+      .post('/sessions')
+      .send({ email, password });
+
+    expect(response.body).toHaveProperty('token');
+  });
 });
