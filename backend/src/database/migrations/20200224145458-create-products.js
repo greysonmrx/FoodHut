@@ -18,11 +18,11 @@ module.exports = {
         allowNull: false,
       },
       cost: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false,
       },
       price: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false,
       },
       created_at: {
