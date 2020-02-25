@@ -16,6 +16,14 @@ class Product extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.belongsToMany(models.Category, {
+      through: 'categories_products',
+      as: 'categories',
+      foreignKey: 'product_id',
+    });
+  }
 }
 
 export default Product;
