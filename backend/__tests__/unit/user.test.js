@@ -3,11 +3,9 @@ import Admin from '../../src/app/models/Admin';
 import Database from '../../src/database';
 
 describe('User', () => {
-  beforeEach(async () => {
-    await Database.truncate();
-  });
-
   it('should encrypt user password', async () => {
+    await Database.truncate(Admin);
+
     const { name, email, password } = await factory.attrs('Admin');
 
     const admin = await Admin.create({

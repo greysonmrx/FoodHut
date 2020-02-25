@@ -23,8 +23,8 @@ class Database {
       .map(model => model.associate && model.associate(this.connection.models));
   }
 
-  truncate() {
-    models.map(model => model.destroy({ truncate: true, force: true }));
+  truncate(model) {
+    return model.destroy({ truncate: { cascade: true }, force: true });
   }
 }
 

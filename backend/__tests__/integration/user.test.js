@@ -3,13 +3,12 @@ import request from 'supertest';
 import app from '../../src/app';
 import factory from '../factories';
 import Database from '../../src/database';
+import User from '../../src/app/models/User';
 
 describe('User', () => {
-  beforeEach(async () => {
-    await Database.truncate();
-  });
-
   it('should be able to register', async () => {
+    await Database.truncate(User);
+
     const { phone } = await factory.attrs('User');
 
     const response = await request(app)
@@ -20,6 +19,8 @@ describe('User', () => {
   });
 
   it('should not be able to register with duplicated phone', async () => {
+    await Database.truncate(User);
+
     const { phone } = await factory.attrs('User');
 
     await request(app)
@@ -34,6 +35,8 @@ describe('User', () => {
   });
 
   it('should be able to update', async () => {
+    await Database.truncate(User);
+
     const { phone, name } = await factory.attrs('User');
 
     await request(app)
@@ -48,6 +51,8 @@ describe('User', () => {
   });
 
   it('should not be able to update with a user not found', async () => {
+    await Database.truncate(User);
+
     const { phone, name } = await factory.attrs('User');
 
     const response = await request(app)
@@ -58,6 +63,8 @@ describe('User', () => {
   });
 
   it('should be able to delete', async () => {
+    await Database.truncate(User);
+
     const { phone } = await factory.attrs('User');
 
     await request(app)
@@ -72,6 +79,8 @@ describe('User', () => {
   });
 
   it('should not be able to delete a user not found', async () => {
+    await Database.truncate(User);
+
     const { phone } = await factory.attrs('User');
 
     const response = await request(app)

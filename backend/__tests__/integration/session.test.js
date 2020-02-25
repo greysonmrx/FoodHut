@@ -6,11 +6,9 @@ import Database from '../../src/database';
 import Admin from '../../src/app/models/Admin';
 
 describe('Authentication', () => {
-  beforeEach(async () => {
-    await Database.truncate();
-  });
-
   it('should authenticate with valid credentials', async () => {
+    await Database.truncate(Admin);
+
     const { name, email, password } = await factory.attrs('Admin');
 
     await Admin.create({ name, email, password });
@@ -23,6 +21,8 @@ describe('Authentication', () => {
   });
 
   it('should not authenticate with invalid credentials', async () => {
+    await Database.truncate(Admin);
+
     const { name, email, password } = await factory.attrs('Admin');
 
     await Admin.create({ name, email, password });
@@ -35,6 +35,8 @@ describe('Authentication', () => {
   });
 
   it('should return JWT token when authenticated', async () => {
+    await Database.truncate(Admin);
+
     const { name, email, password } = await factory.attrs('Admin');
 
     await Admin.create({ name, email, password });
@@ -47,6 +49,8 @@ describe('Authentication', () => {
   });
 
   it('should be able to access private routes with JWT token', async () => {
+    await Database.truncate(Admin);
+
     const admin = await factory.attrs('Admin');
 
     const { email, password } = await Admin.create(admin);
