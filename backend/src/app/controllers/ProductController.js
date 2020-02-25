@@ -13,9 +13,11 @@ class ProductController {
         });
       }
 
-      const { id, name, description, cost, price } = await Product.create(
-        req.body
-      );
+      const product = await Product.create(req.body);
+
+      product.setCategories(req.body.categories);
+
+      const { id, name, description, cost, price } = product;
 
       return res.status(200).json({ id, name, description, cost, price });
     } catch (err) {
