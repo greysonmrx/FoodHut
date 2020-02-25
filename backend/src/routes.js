@@ -4,6 +4,7 @@ import { Router } from 'express';
 import UserController from './app/controllers/UserController';
 import AdminController from './app/controllers/AdminController';
 import SessionController from './app/controllers/SessionController';
+import ProductController from './app/controllers/ProductController';
 
 // Middlewares
 import AuthMiddleware from './app/middlewares/AuthMiddleware';
@@ -23,5 +24,7 @@ routes.use(AuthMiddleware);
 
 routes.post('/admins', AdminController.store);
 routes.put('/admins', AdminController.update);
+
+routes.post('/products', ProductController.store);
 
 export default routes;
