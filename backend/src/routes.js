@@ -27,6 +27,7 @@ routes.post('/admins', AdminController.store);
 routes.put('/admins', AdminController.update);
 
 routes.post('/products', ProductController.store);
+routes.put('/products/:id', ProductController.update);
 
 routes.post('/categories', CategoryController.store);
 
