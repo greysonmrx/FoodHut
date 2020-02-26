@@ -3,16 +3,15 @@ import request from 'supertest';
 import app from '../../src/app';
 import factory from '../factories';
 import Database from '../../src/database';
-import Product from '../../src/app/models/Product';
 import Category from '../../src/app/models/Category';
 import Admin from '../../src/app/models/Admin';
 
 describe('Product', () => {
-  it('should be able to register', async () => {
-    await Database.truncate(Product);
-    await Database.truncate(Category);
-    await Database.truncate(Admin);
+  beforeEach(async () => {
+    await Database.truncate();
+  });
 
+  it('should be able to register', async () => {
     const product = await factory.attrs('Product');
     const category = await factory.attrs('Category');
     const admin = await factory.attrs('Admin');

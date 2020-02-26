@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize';
+import * as Promise from 'bluebird';
 
 import databaseConfig from '../config/database';
 
@@ -23,8 +24,10 @@ class Database {
       .map(model => model.associate && model.associate(this.connection.models));
   }
 
-  truncate(model) {
-    return model.destroy({ truncate: { cascade: true }, force: true });
+  truncate() {
+    return Promise.each(models, model => {
+      return model.destroy({ truncate: { cascade: true }, force: true });
+    });
   }
 }
 
