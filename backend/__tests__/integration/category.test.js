@@ -80,4 +80,22 @@ describe('Category', () => {
 
     expect(response.status).toBe(200);
   });
+
+  it('should not be able to delete with inexistent category', async () => {
+    const admin = await factory.attrs('Admin');
+
+    const { email, password } = await Admin.create(admin);
+
+    const {
+      body: { token },
+    } = await request(app)
+      .post('/sessions')
+      .send({ email, password });
+
+    const response = await request(app)
+      .delete(`/categories/${token}`)
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.status).toBe(400);
+  });
 });
