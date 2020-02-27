@@ -29,4 +29,29 @@ describe('Category', () => {
 
     expect(response.body).toHaveProperty('id');
   });
+
+  it('should not be able to register with duplicate name', async () => {
+    const category = await factory.attrs('Category');
+    const admin = await factory.attrs('Admin');
+
+    const { email, password } = await Admin.create(admin);
+
+    const {
+      body: { token },
+    } = await request(app)
+      .post('/sessions')
+      .send({ email, password });
+
+    await request(app)
+      .post('/categories')
+      .set('Authorization', `Bearer ${token}`)
+      .send(category);
+
+    const response = await request(app)
+      .post('/categories')
+      .set('Authorization', `Bearer ${token}`)
+      .send(category);
+
+    expect(response.status).toBe(400);
+  });
 });
