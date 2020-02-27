@@ -11,11 +11,12 @@ import CategoryController from './app/controllers/CategoryController';
 import AuthMiddleware from './app/middlewares/AuthMiddleware';
 
 // Validators
+import * as UserValidator from './app/validators/User';
 
 const routes = Router();
 
 // Routes
-routes.post('/users', UserController.store);
+routes.post('/users', UserValidator.store, UserController.store);
 routes.put('/users', UserController.update);
 routes.delete('/users', UserController.destroy);
 
