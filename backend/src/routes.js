@@ -31,5 +31,6 @@ routes.put('/products/:id', ProductController.update);
 
 routes.post('/categories', CategoryController.store);
 routes.put('/categories/:id', CategoryController.update);
+routes.delete('/categories/:id', CategoryController.destroy);
 
 export default routes;

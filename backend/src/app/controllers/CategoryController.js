@@ -46,6 +46,26 @@ class CategoryController {
       });
     }
   }
+
+  async destroy(req, res) {
+    try {
+      const category = await Category.findByPk(req.params.id);
+
+      if (!category) {
+        return res.status(400).json({
+          message: 'Categoria não encontrada',
+        });
+      }
+
+      await category.destroy();
+
+      return res.status(200).json({});
+    } catch (err) {
+      return res.status(400).json({
+        message: 'Operação inválida',
+      });
+    }
+  }
 }
 
 export default new CategoryController();
