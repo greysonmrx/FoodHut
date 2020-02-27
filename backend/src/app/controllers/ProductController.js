@@ -30,16 +30,7 @@ class ProductController {
 
   async update(req, res) {
     try {
-      const product = await Product.findByPk(req.params.id, {
-        include: [
-          {
-            model: Category,
-            as: 'categories',
-            attributes: ['id', 'name'],
-            through: { attributes: [] },
-          },
-        ],
-      });
+      const product = await Product.findByPk(req.params.id);
 
       const productExists = await Product.findOne({
         where: { name: req.body.name },
@@ -51,20 +42,13 @@ class ProductController {
         });
       }
 
-      const {
-        id,
-        name,
-        description,
-        cost,
-        price,
-        categories,
-      } = await product.update(req.body);
+      const { id, name, description, cost, price } = await product.update(
+        req.body
+      );
 
       product.setCategories(req.body.categories);
 
-      return res
-        .status(200)
-        .json({ id, name, description, cost, price, categories });
+      return res.status(200).json({ id, name, description, cost, price });
     } catch (err) {
       return res.status(400).json({
         message: 'Operação inválida',
