@@ -29,7 +29,7 @@ routes.post('/admins', AdminController.store);
 routes.put('/admins', AdminController.update);
 
 routes.post('/products', ProductValidator.store, ProductController.store);
-routes.put('/products/:id', ProductController.update);
+routes.put('/products/:id', ProductValidator.update, ProductController.update);
 
 routes.post('/categories', CategoryController.store);
 routes.put('/categories/:id', CategoryController.update);
