@@ -33,7 +33,11 @@ routes.post('/products', ProductValidator.store, ProductController.store);
 routes.put('/products/:id', ProductValidator.update, ProductController.update);
 
 routes.post('/categories', CategoryValidator.store, CategoryController.store);
-routes.put('/categories/:id', CategoryController.update);
+routes.put(
+  '/categories/:id',
+  CategoryValidator.update,
+  CategoryController.update
+);
 routes.delete('/categories/:id', CategoryController.destroy);
 
 export default routes;
