@@ -54,4 +54,30 @@ describe('Category', () => {
 
     expect(response.status).toBe(400);
   });
+
+  it('should be able to delete', async () => {
+    const category = await factory.attrs('Category');
+    const admin = await factory.attrs('Admin');
+
+    const { email, password } = await Admin.create(admin);
+
+    const {
+      body: { token },
+    } = await request(app)
+      .post('/sessions')
+      .send({ email, password });
+
+    const {
+      body: { id },
+    } = await request(app)
+      .post('/categories')
+      .set('Authorization', `Bearer ${token}`)
+      .send(category);
+
+    const response = await request(app)
+      .delete(`/categories/${id}`)
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.status).toBe(200);
+  });
 });
