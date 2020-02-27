@@ -14,6 +14,7 @@ import AuthMiddleware from './app/middlewares/AuthMiddleware';
 import * as UserValidator from './app/validators/User';
 import * as ProductValidator from './app/validators/Product';
 import * as CategoryValidator from './app/validators/Category';
+import * as AdminValidator from './app/validators/Admin';
 
 const routes = Router();
 
@@ -26,7 +27,7 @@ routes.post('/sessions', SessionController.store);
 
 routes.use(AuthMiddleware);
 
-routes.post('/admins', AdminController.store);
+routes.post('/admins', AdminValidator.store, AdminController.store);
 routes.put('/admins', AdminController.update);
 
 routes.post('/products', ProductValidator.store, ProductController.store);
