@@ -36,7 +36,7 @@ class ProductController {
         where: { name: req.body.name },
       });
 
-      if (productExists && productExists.id === req.params.id) {
+      if (productExists && productExists.id != req.params.id) {
         return res.status(400).json({
           message: 'Produto já cadastrado',
         });
