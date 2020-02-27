@@ -17,7 +17,7 @@ const routes = Router();
 
 // Routes
 routes.post('/users', UserValidator.store, UserController.store);
-routes.put('/users', UserController.update);
+routes.put('/users', UserValidator.update, UserController.update);
 routes.delete('/users', UserController.destroy);
 
 routes.post('/sessions', SessionController.store);
