@@ -10,73 +10,73 @@ describe('User', () => {
   });
 
   it('should be able to register', async () => {
-    const { phone } = await factory.attrs('User');
+    const user = await factory.attrs('User');
 
     const response = await request(app)
       .post('/users')
-      .send({ phone });
+      .send(user);
 
     expect(response.body).toHaveProperty('id');
   });
 
   it('should not be able to register with duplicated phone', async () => {
-    const { phone } = await factory.attrs('User');
+    const user = await factory.attrs('User');
 
     await request(app)
       .post('/users')
-      .send({ phone });
+      .send(user);
 
     const response = await request(app)
       .post('/users')
-      .send({ phone });
+      .send(user);
 
     expect(response.status).toBe(400);
   });
 
   it('should be able to update', async () => {
-    const { phone, name } = await factory.attrs('User');
+    const user = await factory.attrs('User');
 
     await request(app)
       .post('/users')
-      .send({ phone });
+      .send(user);
 
     const response = await request(app)
       .put('/users')
-      .send({ name, phone });
+      .send(user);
 
     expect(response.body).toHaveProperty('id');
   });
 
   it('should not be able to update with a user not found', async () => {
-    const { phone, name } = await factory.attrs('User');
+    const user = await factory.attrs('User');
 
     const response = await request(app)
       .put('/users')
-      .send({ name, phone });
+      .send(user);
 
     expect(response.status).toBe(400);
   });
 
   it('should be able to delete', async () => {
-    const { phone } = await factory.attrs('User');
+    const user = await factory.attrs('User');
 
     await request(app)
       .post('/users')
-      .send({ phone });
+      .send(user);
 
     const response = await request(app)
       .delete('/users')
-      .send({ phone });
+      .send(user);
 
     expect(response.status).toBe(200);
   });
 
   it('should not be able to delete a user not found', async () => {
-    const { phone } = await factory.attrs('User');
+    const user = await factory.attrs('User');
 
     const response = await request(app)
       .delete('/users')
-      .send({ phone });
+      .send(user);
 
     expect(response.status).toBe(400);
   });
