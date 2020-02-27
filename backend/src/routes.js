@@ -12,6 +12,7 @@ import AuthMiddleware from './app/middlewares/AuthMiddleware';
 
 // Validators
 import * as UserValidator from './app/validators/User';
+import * as ProductValidator from './app/validators/Product';
 
 const routes = Router();
 
@@ -27,7 +28,7 @@ routes.use(AuthMiddleware);
 routes.post('/admins', AdminController.store);
 routes.put('/admins', AdminController.update);
 
-routes.post('/products', ProductController.store);
+routes.post('/products', ProductValidator.store, ProductController.store);
 routes.put('/products/:id', ProductController.update);
 
 routes.post('/categories', CategoryController.store);
