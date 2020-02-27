@@ -28,7 +28,7 @@ routes.post('/sessions', SessionController.store);
 routes.use(AuthMiddleware);
 
 routes.post('/admins', AdminValidator.store, AdminController.store);
-routes.put('/admins', AdminController.update);
+routes.put('/admins', AdminValidator.update, AdminController.update);
 
 routes.post('/products', ProductValidator.store, ProductController.store);
 routes.put('/products/:id', ProductValidator.update, ProductController.update);
