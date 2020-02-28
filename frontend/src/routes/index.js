@@ -11,6 +11,8 @@ import Categories from "../pages/Categories";
 import Products from "../pages/Products";
 import Users from "../pages/Users";
 
+import NotFound from "../pages/NotFound";
+
 export default function Routes() {
   return (
     <Switch>
@@ -20,6 +22,8 @@ export default function Routes() {
       <Route path="/categories" exact isPrivate component={Categories} />
       <Route path="/products" exact isPrivate component={Products} />
       <Route path="/users" exact isPrivate component={Users} />
+
+      <Route path="/" component={NotFound} />
     </Switch>
   );
 }
