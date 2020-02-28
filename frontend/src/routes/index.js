@@ -1,5 +1,7 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
+
+import Route from "./Route";
 
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
@@ -14,10 +16,10 @@ export default function Routes() {
     <Switch>
       <Route path="/" exact component={SignIn} />
       <Route path="/register" exact component={SignUp} />
-      <Route path="/dashboard" exact component={Dashboard} />
-      <Route path="/categories" exact component={Categories} />
-      <Route path="/products" exact component={Products} />
-      <Route path="/users" exact component={Users} />
+      <Route path="/dashboard" exact isPrivate component={Dashboard} />
+      <Route path="/categories" exact isPrivate component={Categories} />
+      <Route path="/products" exact isPrivate component={Products} />
+      <Route path="/users" exact isPrivate component={Users} />
     </Switch>
   );
 }
