@@ -28,4 +28,23 @@ describe('Admin', () => {
 
     expect(response.body).toHaveProperty('id');
   });
+
+  it('should be able to update', async () => {
+    const admin = await factory.attrs('Admin');
+
+    const { email, password } = await Admin.create(admin);
+
+    const {
+      body: { token },
+    } = await request(app)
+      .post('/sessions')
+      .send({ email, password });
+
+    const response = await request(app)
+      .put('/admins')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ name: 'new name', email });
+
+    expect(response.body).toHaveProperty('name');
+  });
 });
