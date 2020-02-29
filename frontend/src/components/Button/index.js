@@ -13,7 +13,7 @@ export default function Button({ isDisabled, children, ...rest }) {
 
 Button.propTypes = {
   isDisable: PropTypes.bool,
-  children: PropTypes.string.isRequired
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
 };
 
 Button.defaultProps = {
