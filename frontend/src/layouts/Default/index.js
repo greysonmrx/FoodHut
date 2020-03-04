@@ -3,8 +3,15 @@ import PropTypes from "prop-types";
 
 import { Wrapper } from "./styles";
 
+import SideBar from "../../components/SideBar";
+
 export default function DefaultLayout({ children }) {
-  return <Wrapper>{children}</Wrapper>;
+  return (
+    <Wrapper>
+      <SideBar />
+      {children}
+    </Wrapper>
+  );
 }
 
 DefaultLayout.propTypes = {
