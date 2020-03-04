@@ -1,15 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Wrapper } from "./styles";
+import { Wrapper, Content } from "./styles";
 
 import SideBar from "../../components/SideBar";
+import Header from "../../components/Header";
 
 export default function DefaultLayout({ children }) {
   return (
     <Wrapper>
       <SideBar />
-      {children}
+      <Content>
+        <Header />
+        {children}
+      </Content>
     </Wrapper>
   );
 }

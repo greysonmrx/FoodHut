@@ -6,3 +6,7 @@ export const Wrapper = styled.div`
   background: #f5f5f5;
   justify-content: space-between;
 `;
+
+export const Content = styled.div`
+  width: 100%;
+`;
