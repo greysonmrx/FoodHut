@@ -3,6 +3,8 @@ import { IoIosRadio, IoIosArrowDown } from "react-icons/io";
 
 import { Container, LeftContent, RightContent, Profile } from "./styles";
 
+import Notifications from "../Notifications";
+
 export default function Header() {
   return (
     <Container>
@@ -12,6 +14,7 @@ export default function Header() {
         <span>On-line</span>
       </LeftContent>
       <RightContent>
+        <Notifications />
         <Profile to="/profile">
           <img
             src={`https://api.adorable.io/avatars/50/${"Greyson Mascarenhas"}.png`}
