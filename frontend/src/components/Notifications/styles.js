@@ -31,12 +31,13 @@ export const Badge = styled.button`
 `;
 
 export const Content = styled.div`
+  z-index: 99999;
   display: ${props => (props.visible ? "block" : "none")};
   position: absolute;
   width: 440px;
   left: calc(50% - 230px);
   top: calc(100% + 20px);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 4px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 
