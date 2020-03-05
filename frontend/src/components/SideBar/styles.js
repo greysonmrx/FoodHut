@@ -6,11 +6,15 @@ export const Container = styled.div`
   height: 100%;
   background: #ffffff;
   width: 280px;
+  min-width: 280px;
   padding: 25px 25px;
 `;
 
 export const Content = styled.div`
   padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   button {
     margin-top: 30px;
@@ -26,10 +30,12 @@ export const Content = styled.div`
 `;
 
 export const Links = styled.div`
-  padding: 0 0 30px 15px;
+  padding: 20px 0 20px 15px;
   display: flex;
   flex-direction: column;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
   max-height: calc(100% - 250px);
 `;
 

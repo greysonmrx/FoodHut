@@ -8,8 +8,6 @@ import {
   MdSettings
 } from "react-icons/md";
 
-import { FaPlus } from "react-icons/fa";
-
 import history from "../../services/history";
 
 import {
@@ -35,10 +33,7 @@ export default function SideBar() {
     <Container>
       <Content>
         <img src={Logo} alt="FoodHut" />
-        <Button onClick={() => {}}>
-          Adicionar funcionário
-          <FaPlus />
-        </Button>
+        <Button onClick={() => {}}>Adicionar administrador</Button>
       </Content>
       <Links>
         <Scroll>
