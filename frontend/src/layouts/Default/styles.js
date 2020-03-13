@@ -10,3 +10,9 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   width: 100%;
 `;
+
+export const ChildrenContent = styled.div`
+  width: 100%;
+  height: calc(100% - 80px);
+  padding: 5px;
+`;
