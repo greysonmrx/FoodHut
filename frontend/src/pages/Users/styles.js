@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../../components/Button";
 
 export const Container = styled.div`
   flex: 1;
@@ -19,6 +20,12 @@ export const SearchContent = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 30px 0;
+`;
+
+export const SearchButton = styled(Button)`
+  width: 70px;
+  height: 45px;
+  margin-left: 15px;
 `;
 
 export const InputContainer = styled.div`

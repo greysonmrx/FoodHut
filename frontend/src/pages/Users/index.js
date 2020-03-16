@@ -6,7 +6,8 @@ import {
   SearchContent,
   InputContainer,
   ActionContent,
-  TableContent
+  TableContent,
+  SearchButton
 } from "./styles";
 
 import Action from "../../components/Action";
@@ -195,6 +196,7 @@ export default function Users() {
       )
     }
   ]);
+  const [search, setSearch] = useState();
 
   function handleSearchUsers(text) {
     console.log(`Fetching users starting with the name ${text}`);
@@ -216,9 +218,15 @@ export default function Users() {
           <FiSearch color="#b1b1b3" size={22} />
           <input
             placeholder="Procurar usuários"
-            onChange={field => handleSearchUsers(field.target.value)}
+            onChange={field => setSearch(field.target.value)}
           />
         </InputContainer>
+        <SearchButton
+          isDisabled={!search}
+          onClick={() => handleSearchUsers(search)}
+        >
+          <FiSearch color="#FFFFFF" size={22} />
+        </SearchButton>
       </SearchContent>
       <TableContent>
         <Table
